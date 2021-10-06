@@ -1,2 +1,3 @@
-# doctrine-open-source
-Individual scripts shared by the Doctrine.fr team
+# blog-posts
+
+This repository contains various source code from the [Doctrine Engineering blog](https://medium.com/doctrine/engineering/home)
