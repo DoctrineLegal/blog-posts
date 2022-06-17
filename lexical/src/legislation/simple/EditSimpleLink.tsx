@@ -67,8 +67,9 @@ export function EditSimpleLink({ editor }: { editor: LexicalEditor }) {
   }, [editor, updateLinkEditor]);
 
   return (
-    <div className="">
+    <div>
       <input
+        className="w-full"
         value={editedUrl}
         onChange={(evt) => setEditedUrl(evt.target.value)}
         placeholder="Type your url here"

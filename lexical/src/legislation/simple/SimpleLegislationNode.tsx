@@ -7,10 +7,8 @@ import {
   $setSelection,
   ElementNode,
   EditorConfig,
-  SerializedElementNode,
-  Spread,
 } from "lexical";
-import { LinkNode } from "@lexical/link";
+import { LinkNode, SerializedLinkNode } from "@lexical/link";
 import utils from "@lexical/utils";
 
 function convertAnchorElement(domNode: Node) {
@@ -28,16 +26,6 @@ function convertAnchorElement(domNode: Node) {
   };
 }
 
-// Duplicated type - wait for type release from @lexical/link (current 0.3.3)
-type SerializedLinkNode = Spread<
-  {
-    type: "link";
-    url: string;
-    version: 1;
-  },
-  SerializedElementNode
->;
-
 export const TOGGLE_SIMPLE_LEGISLATION_COMMAND: LexicalCommand<string | null> =
   createCommand();
 
@@ -50,6 +38,7 @@ export class SimpleLegislationNode extends LinkNode {
     return new SimpleLegislationNode(node.__url, node.__key);
   }
 
+  // @ts-ignore
   createDOM(config: EditorConfig): HTMLElement {
     const element = super.createDOM(config);
 
@@ -75,6 +64,7 @@ export class SimpleLegislationNode extends LinkNode {
     return node;
   }
 
+  // @ts-ignore
   exportJSON() {
     const json = {
       ...super.exportJSON(),
