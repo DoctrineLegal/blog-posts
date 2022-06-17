@@ -13,7 +13,7 @@ export function Actions(): JSX.Element | null {
   const { nodeKey } = useContext(RichLegislationContext);
 
   return (
-    <div className="">
+    <div>
       {isLink && <EditSimpleLink editor={editor} />}
       {isRich && nodeKey && (
         <EditRichLegislation editor={editor} nodeKey={nodeKey} />

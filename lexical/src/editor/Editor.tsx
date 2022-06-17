@@ -21,8 +21,8 @@ export const Editor = () => (
         onError: console.error,
       }}
     >
-      <div className="mx-auto bg-white rounded-xl shadow-md overflow-hidden ">
-        <div className="m-8 flex space-y-8 flex-col	">
+      <div className="mx-auto bg-white rounded-xl shadow-md overflow-hidden">
+        <div className="m-8 flex space-y-8 flex-col">
           <Section title="Toolbar">
             <Toolbar />
           </Section>
@@ -34,7 +34,7 @@ export const Editor = () => (
                   <ContentEditable className="p-2 min-h-[150px] border-solid border-2 border-sky-500" />
                 }
                 placeholder={
-                  <div className="absolute top-2 left-2 pointer-events-none	">
+                  <div className="absolute top-2 left-2 pointer-events-none">
                     Enter some text...
                   </div>
                 }
