@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/blog-posts/lexical/build/static/css/main.fcf046bd.css",
+    "main.js": "/blog-posts/lexical/build/static/js/main.2056a907.js",
+    "index.html": "/blog-posts/lexical/build/index.html",
+    "main.fcf046bd.css.map": "/blog-posts/lexical/build/static/css/main.fcf046bd.css.map",
+    "main.2056a907.js.map": "/blog-posts/lexical/build/static/js/main.2056a907.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fcf046bd.css",
+    "static/js/main.2056a907.js"
+  ]
+}
