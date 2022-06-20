@@ -13,22 +13,17 @@ import {
 import { RichLegislationComponent } from "./RichLegislationComponent";
 import data from "../data.json";
 
-function convertAnchorElement(domNode: Node) {
-  let node = null;
+function convertAnchorElement(legislation: LegislationType) {
+  return function (domNode: Node) {
+    let node = null;
 
-  if (domNode instanceof HTMLAnchorElement) {
-    const href = domNode.getAttribute("href");
-
-    const legislation = data.find((l: LegislationType) =>
-      href?.includes(l.url)
-    );
-    if (legislation) {
+    if (domNode instanceof HTMLAnchorElement) {
       node = $createRichLegislationNode(legislation, domNode.innerText);
     }
-  }
 
-  return {
-    node,
+    return {
+      node,
+    };
   };
 }
 
@@ -102,18 +97,19 @@ export class RichLegislationNode extends DecoratorNode<JSX.Element> {
   }
 
   static importJSON(serializedNode: SerializedRichLegislationNode) {
-    const node = $createRichLegislationNode(serializedNode.legislation);
-    return node;
+    return $createRichLegislationNode(
+      serializedNode.legislation,
+      serializedNode.comment
+    );
   }
 
   exportJSON() {
-    const json = {
+    return {
       type: this.getType(),
       comment: this.__comment,
       legislation: this.__legislation,
       version: 1,
     };
-    return json;
   }
 
   static importDOM() {
@@ -127,7 +123,7 @@ export class RichLegislationNode extends DecoratorNode<JSX.Element> {
           );
           if (legislation) {
             return {
-              conversion: convertAnchorElement,
+              conversion: convertAnchorElement(legislation),
               priority: 3 as const, // higher than simple legislation link
             };
           }
