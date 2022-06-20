@@ -4,4 +4,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Demo
 
+[live demo](https://doctrinelegal.github.io/blog-posts/lexical/build)
+
 ![demo](./docs/demo.gif)
