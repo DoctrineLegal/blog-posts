@@ -57,6 +57,12 @@ function ToolbarComponent({
         aria-label="detect legislation"
       >
         Detect legislation
+        <span
+          title="select a text starting with 'article'"
+          className="material-symbols-outlined cursor-pointer	pl-2 cursor-help text-sm"
+        >
+          info
+        </span>
       </Button>
       <Button
         onClick={() =>

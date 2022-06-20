@@ -38,6 +38,16 @@ export function HTMLImport({ editor }: { editor: LexicalEditor }) {
     <div>
       <form onSubmit={importHTML}>
         <div>
+          <p>
+            Example:
+            <pre className="p-4 bg-slate-300 m-2">
+              {`this <a href="/l/texts/codes/LEGITEXT000006070721/articles/LEGIARTI000006430468">
+   will become a rich link with comment
+</a> and this
+<a href="doctrine.fr/l/1231321">will become a simple link</a>
+`}
+            </pre>
+          </p>
           <p>Type your HTML here</p>
           <textarea
             className="w-full h-24 border-solid border-2 border-sky-500"
