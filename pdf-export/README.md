@@ -2,7 +2,7 @@
 
 ## Demo
 
-You can find the 4 versions of the PDF export we had in mind at Doctrine
+You can find the 4 versions of the PDF export we had at Doctrine
 
 The fist one leverage [html2pdf here](static/html2pdf.html)
 
