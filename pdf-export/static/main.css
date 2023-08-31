@@ -1,0 +1,52 @@
+body {
+    margin: 2rem; 
+}
+
+.header-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    height: 40px;
+    width: 42px;
+    margin-top: auto;
+    margin-bottom: auto;
+    background-image: url(https://cdn.doctrine.fr/img/logo/logos_doctrine/logo_navbar.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    border-radius: 4px;
+    background-position: 0;
+    display: block;
+    margin-right: 8px;
+}
+
+@media print {
+    .content {
+        column-count: 2;
+        column-gap: 2em;
+        -webkit-column-gap: 2em;
+        column-rule: 1px solid black;
+        -webkit-column-rule: 1px solid black;
+    }    
+}
+
+/* html2pdf */
+.export-button {
+    
+}
+
+
+/* wkhtmltopdf */
+.wkhtmltopdf-hack .content {
+    column-count: initial;
+
+    -webkit-columns: 0 0;
+    /* This is the strange way to define the number of columns:
+       50% = 2 columns, 33% = 3 columns 25% = 4 columns */
+    width: 50%; 
+} 
+
+
+
