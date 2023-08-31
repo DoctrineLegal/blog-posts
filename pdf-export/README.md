@@ -10,10 +10,36 @@ npm run serve
 
 You can find the 4 versions of the PDF export we had at Doctrine
 
-The fist one leverages [html2pdf here](static/html2pdf.html)
+### html2pdf
+[code here](static/html2pdf.html)
 
-The second one uses [phantomjs here](phantomjs.mjs)
+Visit [http://localhost:8080/html2pdf.html](http://localhost:8080/html2pdf.html)
 
-The third one uses [wkhtmltopdf here](wkhtmltopdf.mjs)
+### phantomjs
 
-And the last and still used in production one uses [puppeteer here](puppeteer.mjs)
+run this command and check out the generated pdf in the dist folder
+
+```sh
+node phantomjs.mjs
+```
+[code here](phantomjs.mjs)
+
+### wkhtmltopdf
+
+run this command and check out the generated pdf in the dist folder
+
+```sh
+node wkhtmltopdf.mjs
+```
+
+[code here](wkhtmltopdf.mjs)
+### puppeteer
+The last and still used in production solution
+
+run this command and check out the generated pdf in the dist folder
+
+```sh
+node puppeteer.mjs
+```
+
+[code here](puppeteer.mjs)
