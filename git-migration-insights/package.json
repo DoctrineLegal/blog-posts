@@ -5,10 +5,11 @@
   "main": "index.mjs",
   "type": "module",
   "scripts": {
-    "start": "node index.mjs"
+    "start": "node index.mjs",
+    "test": "node --test"
   },
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=21.0.0"
   },
   "keywords": [],
   "author": "",

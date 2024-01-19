@@ -1,12 +1,17 @@
 import { globby } from "globby";
 import { promises as fs } from "fs";
 import path from "path";
-import config from "./config.mjs";
+
 import * as recast from "recast";
 
-const { repository } = config;
+async function parseTypescriptCode(code) {
+  return recast.parse(code, {
+    parser: await import("recast/parsers/typescript.js"),
+  });
+}
 
-function v1Analyzer(ast) {
+export async function v1Analyzer(code) {
+  const ast = await parseTypescriptCode(code);
   let count = 0;
   recast.visit(ast, {
     visitNewExpression: (path) => {
@@ -20,7 +25,9 @@ function v1Analyzer(ast) {
   return count;
 }
 
-function v2Analyzer(ast) {
+export async function v2Analyzer(code) {
+  const ast = await parseTypescriptCode(code);
+
   let count = 0;
   recast.visit(ast, {
     visitDecorator: (path) => {
@@ -36,7 +43,7 @@ function v2Analyzer(ast) {
   return count;
 }
 
-async function getBackwardCompatiblePaths() {
+async function getBackwardCompatiblePaths(repository) {
   try {
     // oldest version
     await fs.access(path.join(repository, "/backend/controllers"));
@@ -55,25 +62,20 @@ async function getBackwardCompatiblePaths() {
   };
 }
 
-export async function generateMetrics() {
+export async function generateMetrics(repository) {
   let controllersCount = { v1: 0, v2: 0 };
 
-  const basePaths = await getBackwardCompatiblePaths();
+  const basePaths = await getBackwardCompatiblePaths(repository);
 
   const v1Paths = await globby(
     path.join(repository, `${basePaths.v1}/**/*.js`)
   );
 
   for (const path of v1Paths.filter((path) => !path.includes(".spec."))) {
-    const file = await fs.readFile(path, "utf8");
-
-    // Read TypeScript source code
-    const tsAst = recast.parse(file, {
-      parser: await import("recast/parsers/typescript.js"),
-    });
+    const code = await fs.readFile(path, "utf8");
 
     // Generate Mermaid flow
-    const count = v1Analyzer(tsAst);
+    const count = await v1Analyzer(code);
     controllersCount.v1 += count;
   }
 
@@ -82,15 +84,10 @@ export async function generateMetrics() {
     : [];
 
   for (const path of v2Paths.filter((path) => !path.includes("/tests/"))) {
-    const file = await fs.readFile(path, "utf8");
-
-    // Read TypeScript source code
-    const tsAst = recast.parse(file, {
-      parser: await import("recast/parsers/typescript.js"),
-    });
+    const code = await fs.readFile(path, "utf8");
 
     // Generate Mermaid flow
-    const count = v2Analyzer(tsAst);
+    const count = await v2Analyzer(code);
     controllersCount.v2 += count;
   }
 

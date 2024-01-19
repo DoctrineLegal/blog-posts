@@ -43,7 +43,7 @@ function checkout(date) {
     shell.cd(config.repository);
     const commit = checkout(day);
     shell.cd(currentDirector);
-    const metrics = await generateMetrics();
+    const metrics = await generateMetrics(config.repository);
     const row = { ...metrics, commit, day };
     rows.push(row);
   }
