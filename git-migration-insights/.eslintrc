@@ -1,0 +1,10 @@
+{
+  "extends": ["eslint:recommended", "plugin:node/recommended"],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "rules":{
+    "node/no-unsupported-features/es-syntax": "off"
+}
+}
