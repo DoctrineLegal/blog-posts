@@ -4,7 +4,17 @@ import { DateTime } from "luxon";
 // @ts-expect-error - polyfill
 window.Buffer = Buffer;
 
-import { AreaChart, Area, XAxis, YAxis, Tooltip } from "recharts";
+import {
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  Tooltip,
+  BarChart,
+  CartesianGrid,
+  Legend,
+  Bar,
+} from "recharts";
 
 import { useEffect, useState } from "react";
 
@@ -38,40 +48,21 @@ function App() {
       >
         {data.length === 0 && <p>Loading...</p>}
         {data.length > 0 && (
-          <AreaChart
-            width={900}
-            height={400}
-            data={data}
-            margin={{
-              top: 10,
-              right: 30,
-              left: 0,
-              bottom: 0,
-            }}
-          >
-            <XAxis
-              dataKey="day"
-              tickFormatter={(tickItem) =>
-                DateTime.fromFormat(tickItem, "yyyy/mm/dd").toFormat("mm/yy")
-              }
-            />
-            <YAxis />
-            <Tooltip />
-            <Area
-              type="monotone"
-              dataKey="v2"
-              stackId="1"
-              stroke="#8884d8"
-              fill="#8884d8"
-            />
-            <Area
-              type="monotone"
-              dataKey="v1"
-              stackId="1"
-              stroke="#82ca9d"
-              fill="#82ca9d"
-            />
-          </AreaChart>
+          <>
+            <BarChart width={1200} height={500} data={data}>
+              <XAxis
+                dataKey="day"
+                tickFormatter={(tickItem) =>
+                  DateTime.fromFormat(tickItem, "yyyy/mm/dd").toFormat("mm/yy")
+                }
+              />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="v2" stroke="#8884d8" fill="#8884d8" />
+              <Bar dataKey="v1" stroke="#82ca9d" fill="#82ca9d" />
+            </BarChart>
+          </>
         )}
       </div>
     </>
