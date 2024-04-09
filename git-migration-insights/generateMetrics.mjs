@@ -130,7 +130,18 @@ export async function generateMetrics(repository) {
     return acc;
   }, {});
 
+  const countBySquad = Object.keys(dataBySquad).reduce((acc, squad) => {
+    acc[squad] = Object.keys(dataBySquad[squad]).reduce(
+      (acc, domain) => (acc += dataBySquad[squad][domain].length),
+      0
+    );
+
+    return acc;
+  }, {});
+
   console.log(dataBySquad);
+  console.log("-------------------");
+  console.log(countBySquad);
 
   return;
 }
