@@ -111,4 +111,4 @@ Temporary Items
 # End of https://www.gitignore.io/api/git,osx,node
 
 metrics*
-graph-app/public/*
+graph-app/public/metrics.json
