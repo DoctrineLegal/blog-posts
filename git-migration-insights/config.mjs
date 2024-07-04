@@ -9,9 +9,12 @@ if (!argv.repository) {
   );
 }
 
+const dayFormat = "YYYY/MM/DD";
+
 export default {
   repository: argv.repository,
-  startingDate: argv.date || moment(),
+  startingDate: argv.date || moment().format(dayFormat),
   stepType: argv.stepType || "days",
   stepCount: argv.stepCount || 7,
+  dayFormat,
 };

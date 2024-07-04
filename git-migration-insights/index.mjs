@@ -5,10 +5,9 @@ import { promises as fs } from "fs";
 import { generateMetrics } from "./generateMetrics.mjs";
 import config from "./config.mjs";
 
-const dayFormat = "YYYY/MM/DD";
-
-let days = [];
+const { dayFormat } = config;
 const today = moment();
+let days = [];
 
 let currentDay = config.startingDate;
 while (moment(currentDay, dayFormat).isBefore(today)) {
@@ -42,7 +41,6 @@ function checkout(date) {
   for (const day of days) {
     shell.cd(config.repository);
     const commit = checkout(day);
-    shell.cd(currentDirector);
     const metrics = await generateMetrics(config.repository);
     const row = { ...metrics, commit, day };
     rows.push(row);
@@ -50,5 +48,6 @@ function checkout(date) {
   // order rows by date asc
   rows.reverse();
 
+  shell.cd(currentDirector);
   await fs.writeFile(`graph-app/public/metrics.json`, JSON.stringify(rows));
 })();
