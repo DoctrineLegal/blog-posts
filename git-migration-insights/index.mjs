@@ -35,7 +35,8 @@ function checkout(date) {
 (async () => {
   const currentDirector = shell.pwd().stdout;
   shell.cd(config.repository);
-  shell.exec(`git checkout master`, { silent: true });
+  shell.exec(`git checkout master`, { silent: false });
+  shell.exec(`git pull origin master`, { silent: false });
   const rows = [];
 
   for (const day of days) {
