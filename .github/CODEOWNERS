@@ -1,0 +1,3 @@
+terraform/       @DoctrineLegal/foundation @doctrine-generic-service-account
+.circleci/       @DoctrineLegal/foundation @doctrine-generic-service-account
+.github/         @DoctrineLegal/foundation @doctrine-generic-service-account
